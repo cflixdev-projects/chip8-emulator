@@ -1,0 +1,8 @@
+*.o
+
+*.exe
+chip8-emu
+
+*.ch8
+
+rest/
