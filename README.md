@@ -1,6 +1,6 @@
-# 🟣 CHIP-8 Emulator
+# CHIP-8 Emulator
 
-**A precision-focused CHIP-8 interpreter written in modern C, powered by SDL3 for hardware-accelerated rendering and low-latency input.**
+A CHIP-8 interpreter written in C, using SDL3 for rendering and input.
 
 <p align="center">
   <img src="https://img.shields.io/badge/language-C-blue?style=flat-square" alt="Language">
@@ -11,29 +11,27 @@
 
 ---
 
-## 📖 Overview
+## Overview
 
-This project is a clean-room implementation of the classic **CHIP-8 virtual machine**, designed around three principles: **architectural accuracy**, **minimal dependencies**, and **readable source code**. It targets the original COSMAC VIP specification and runs any standard `.ch8` ROM.
-
-No bloat. No magic. Just a faithful interpreter.
+This is a from-scratch implementation of the CHIP-8 virtual machine, targeting the original COSMAC VIP specification. It runs standard `.ch8` ROMs and aims for correctness and clarity over feature creep.
 
 ---
 
-## ✨ Features
+## Features
 
 | | |
 |---|---|
-| 🎯 **Full Opcode Coverage** | All 35 standard CHIP-8 instructions implemented and verified. |
-| 🖼️ **SDL3 Rendering Pipeline** | GPU-backed texture streaming with crisp `NEAREST` pixel scaling. |
-| ⏱️ **Precise 60 Hz Timing** | Hardware-independent clock synchronization — no busy-wait loops. |
-| 🛡️ **Safe ROM Loading** | Memory bounds validated against the 4 KB address space before boot. |
-| 🧩 **Modular Source Layout** | Clean separation between CPU, memory, I/O, and the main loop. |
+| **Opcode Coverage** | All 35 standard CHIP-8 instructions implemented. |
+| **Rendering** | SDL3 texture streaming with `NEAREST` pixel scaling. |
+| **Timing** | 60 Hz clock synchronization, independent of host framerate. |
+| **ROM Loading** | Memory bounds validated against the 4 KB address space before execution. |
+| **Source Layout** | Separate translation units for CPU, memory, I/O, and the main loop. |
 
 ---
 
-## 🧠 Architecture
+## Architecture
 
-The interpreter mirrors the physical **RCA COSMAC VIP** hardware layout:
+The interpreter follows the RCA COSMAC VIP hardware layout:
 
 ```
 ├── Memory           4,096 bytes RAM       (ROM loads at 0x200)
@@ -45,7 +43,7 @@ The interpreter mirrors the physical **RCA COSMAC VIP** hardware layout:
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 .
@@ -59,9 +57,9 @@ The interpreter mirrors the physical **RCA COSMAC VIP** hardware layout:
 
 ---
 
-## 🎮 Controls
+## Controls
 
-The 16-key hexadecimal keypad maps directly onto the QWERTY home rows:
+The 16-key hexadecimal keypad maps to the QWERTY layout as follows:
 
 | CHIP-8 | `1` | `2` | `3` | `C` | | CHIP-8 | `4` | `5` | `6` | `D` |
 |:------:|:---:|:---:|:---:|:---:|:-:|:------:|:---:|:---:|:---:|:---:|
@@ -71,13 +69,13 @@ The 16-key hexadecimal keypad maps directly onto the QWERTY home rows:
 |:------:|:---:|:---:|:---:|:---:|:-:|:------:|:---:|:---:|:---:|:---:|
 | **Key** | `A` | `S` | `D` | `F` | | **Key** | `Z` | `X` | `C` | `V` |
 
-> **Note** — Press `ESC` at any time to exit cleanly.
+Press `ESC` to exit.
 
 ---
 
-## ⚙️ Building
+## Building
 
-**Requirements:** `gcc` (or `clang`) and the SDL3 development libraries installed system-wide.
+**Requirements:** `gcc` (or `clang`) and the SDL3 development libraries.
 
 ```bash
 make
@@ -85,9 +83,7 @@ make
 
 ---
 
-## 🚀 Running
-
-Pass a ROM path directly to the binary:
+## Running
 
 ```bash
 ./chip8-emu <path_to_rom.ch8>
@@ -101,9 +97,9 @@ make run
 
 ---
 
-## 🔬 Implementation Notes
+## Implementation
 
-The main loop performs 16-bit instruction fetch and dispatches through a bitmask-based decode tree — the standard approach for CHIP-8, chosen for both speed and clarity:
+The main loop fetches a 16-bit instruction and dispatches on the high nibble using a bitmask switch. This is the standard decoding strategy for CHIP-8 and keeps the dispatch path predictable.
 
 ```c
 /* Fetch two bytes and assemble the 16-bit opcode */
@@ -125,10 +121,10 @@ switch (opcode & 0xF000) {
 }
 ```
 
-Each instruction updates the framebuffer and timers independently of the render tick, keeping emulation speed consistent across different host machines.
+Timers and the framebuffer are updated independently of the render tick, so emulation speed does not depend on the host's refresh rate.
 
 ---
 
-## 📄 License
+## License
 
-Released under the **MIT License** — see `LICENSE` for details.
+MIT — see `LICENSE` for details.
