@@ -19,7 +19,7 @@ This is a from-scratch implementation of the CHIP-8 virtual machine, targeting t
 
 ## Features
 
-| | |
+| Feature | Description |
 |---|---|
 | **Opcode Coverage** | All 35 standard CHIP-8 instructions implemented. |
 | **Rendering** | SDL3 texture streaming with `NEAREST` pixel scaling. |
@@ -61,13 +61,56 @@ The interpreter follows the RCA COSMAC VIP hardware layout:
 
 The 16-key hexadecimal keypad maps to the QWERTY layout as follows:
 
-| CHIP-8 | `1` | `2` | `3` | `C` | | CHIP-8 | `4` | `5` | `6` | `D` |
-|:------:|:---:|:---:|:---:|:---:|:-:|:------:|:---:|:---:|:---:|:---:|
-| **Key** | `1` | `2` | `3` | `4` | | **Key** | `Q` | `W` | `E` | `R` |
-
-| CHIP-8 | `7` | `8` | `9` | `E` | | CHIP-8 | `A` | `0` | `B` | `F` |
-|:------:|:---:|:---:|:---:|:---:|:-:|:------:|:---:|:---:|:---:|:---:|
-| **Key** | `A` | `S` | `D` | `F` | | **Key** | `Z` | `X` | `C` | `V` |
+<table>
+  <tr>
+    <th align="center">CHIP-8</th>
+    <th align="center"><code>1</code></th>
+    <th align="center"><code>2</code></th>
+    <th align="center"><code>3</code></th>
+    <th align="center"><code>C</code></th>
+    <th align="center">CHIP-8</th>
+    <th align="center"><code>4</code></th>
+    <th align="center"><code>5</code></th>
+    <th align="center"><code>6</code></th>
+    <th align="center"><code>D</code></th>
+  </tr>
+  <tr>
+    <td align="center"><b>Key</b></td>
+    <td align="center"><code>1</code></td>
+    <td align="center"><code>2</code></td>
+    <td align="center"><code>3</code></td>
+    <td align="center"><code>4</code></td>
+    <td align="center"><b>Key</b></td>
+    <td align="center"><code>Q</code></td>
+    <td align="center"><code>W</code></td>
+    <td align="center"><code>E</code></td>
+    <td align="center"><code>R</code></td>
+  </tr>
+  <tr>
+    <th align="center">CHIP-8</th>
+    <th align="center"><code>7</code></th>
+    <th align="center"><code>8</code></th>
+    <th align="center"><code>9</code></th>
+    <th align="center"><code>E</code></th>
+    <th align="center">CHIP-8</th>
+    <th align="center"><code>A</code></th>
+    <th align="center"><code>0</code></th>
+    <th align="center"><code>B</code></th>
+    <th align="center"><code>F</code></th>
+  </tr>
+  <tr>
+    <td align="center"><b>Key</b></td>
+    <td align="center"><code>A</code></td>
+    <td align="center"><code>S</code></td>
+    <td align="center"><code>D</code></td>
+    <td align="center"><code>F</code></td>
+    <td align="center"><b>Key</b></td>
+    <td align="center"><code>Z</code></td>
+    <td align="center"><code>X</code></td>
+    <td align="center"><code>C</code></td>
+    <td align="center"><code>V</code></td>
+  </tr>
+</table>
 
 Press `ESC` to exit.
 
